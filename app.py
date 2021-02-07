@@ -18,7 +18,7 @@ class Poem:
         self.author = titleAndAuthor.find("div", "author").get_text()
         self.author = self.author[self.author.find(":") + 2:]
 
-        poemText = allHTML.find("div", "text").get_text()
+        poemText = allHTML.find("div", "text").get_text().strip()
         poemAll = ""
         for letter in poemText:
             if(letter.isupper()):
@@ -38,7 +38,6 @@ class Poem:
         allHTML = BeautifulSoup(allHTML, "lxml").find_all("a")
         return allHTML[4].get('href')
         
-
 p = Poem()
 p.setAll()
-print(p.author + "\n" +  p.title + "\n" + p.poem)
+print("Şair: " + p.author + "\n\n" + "Başlık: " + p.title + "\n\n" + p.poem)
